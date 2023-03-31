@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Results summary component</title>
+
+  <style>
+    :root {
+      /* red */
+      --color-red-h: 0;
+      --color-red-s: 100%;
+      --color-red-l: 67%;
+      --color-red: hsl(var(--color-red-h), var(--color-red-s), var(--color-red-l));
+      --color-red-bg: hsl(var(--color-red-h), var(--color-red-s), calc(var(--color-red-l) + 30%));
+
+      /* yellow */
+      --color-yellow-h: 39;
+      --color-yellow-s: 100%;
+      --color-yellow-l: 56%;
+      --color-yellow: hsl(var(--color-yellow-h), var(--color-yellow-s), var(--color-yellow-l));
+      --color-yellow-bg: hsl(var(--color-yellow-h), var(--color-yellow-s), calc(var(--color-yellow-l) + 40%));
+
+      /* green */
+      --color-green-h: 166;
+      --color-green-s: 100%;
+      --color-green-l: 37%;
+      --color-green: hsl(var(--color-green-h), var(--color-green-s), var(--color-green-l));
+      --color-green-bg: hsl(var(--color-green-h), var(--color-green-s), calc(var(--color-green-l) + 60%));
+
+      /* blue */
+      --color-blue-h: 234;
+      --color-blue-s: 85%;
+      --color-blue-l: 45%;
+      --color-blue: hsl(var(--color-blue-h), var(--color-blue-s), var(--color-blue-l));
+      --color-blue-bg: hsl(var(--color-blue-h), var(--color-blue-s), calc(var(--color-blue-l) + 53%));
+
+      --color-gradient-start: hsl(252, 100%, 67%);
+      --color-gradient-end: hsl(241, 81%, 54%);
+      --color-circle-gradient-start: hsla(256, 72%, 46%, 1);
+      --color-circle-gradient-end: hsla(241, 72%, 46%, 0);
+      --color-dark: #000000;
+      --color-light: hsl(0, 0%, 100%);
+      --color-secondary: hsl(201, 7%, 59%);
+      --color-button: hsl(224, 30%, 27%);
+      --container-width: 735px; 
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      color: var(--color-dark);
+      font-family: 'Hanken Grotesk', sans-serif;
+      user-select: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: var(--container-width);
+      width: 100%;
+      height: 510px;
+      background: var(--color-light);
+      border-radius: 32px;
+      display: flex;
+      box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .result {
+      width: 50%;
+      background: linear-gradient(var(--color-gradient-start), var(--color-gradient-end));
+      border-radius: 32px;
+      padding: 40px 0px;
+      color: var(--color-light)
+    }
+
+    .result__title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 35px;
+    }
+
+    .circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 0 auto;
+      background: linear-gradient(var(--color-circle-gradient-start), var(--color-circle-gradient-end));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .circle__value {
+      font-size: 70px;
+      font-weight: 700;
+      line-height: 78px;
+    }
+
+    .circle__max {
+      font-size: 20px;
+    }
+
+    .description {
+      margin-top: 25px;
+    }
+
+    .description__title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .description__text {
+      text-align: center;
+      font-size: 18px;
+      padding: 0 60px;
+      font-weight: 100;
+    }
+
+    .summary {
+      width: 50%;
+      padding: 40px;
+    }
+
+    .summary__title {
+      font-size: 24px;
+      margin-bottom: 25px;
+    }
+
+    .category {
+      display: flex;
+      align-items: center;
+      padding: 18px 15px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .category--red {
+      background: var(--color-red-bg);
+    }
+
+    .category--yellow {
+      background: var(--color-yellow-bg);
+    }
+
+    .category--green {
+      background: var(--color-green-bg);
+    }
+
+    .category--blue {
+      background: var(--color-blue-bg);
+    }
+
+    .category__icon {
+      margin-right: 10px;
+      height: 20px;
+    }
+
+    .category__name {
+      font-size: 18px;
+    }
+
+    .category__name--red {
+      color: var(--color-red);
+    }
+
+    .category__name--yellow {
+      color: var(--color-yellow);
+    }
+
+    .category__name--green {
+      color: var(--color-green);
+    }
+
+    .category__name--blue {
+      color: var(--color-blue);
+    }
+
+    .category__score {
+      margin-left: auto;
+      font-size: 19px;
+    }
+
+    .score__max {
+      color: var(--color-secondary);
+    }
+
+    .summary__button {
+      background: var(--color-button);
+      margin-top: 28px;
+      width: 100%;
+      border: none;
+      color: var(--color-light);
+      border-radius: 30px;
+      padding: 18px 0;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .summary__button:hover {
+      background: linear-gradient(var(--color-gradient-start), var(--color-gradient-end));
+    }
+
+    @media screen and (max-width: 735px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+        box-shadow: none;
+      }
+
+      .wrapper {
+        height: 100%;
+      }
+
+      .result {
+        width: 100%;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      .summary {
+        width: 100%;
+        padding: 20px 30px;
+      }
+
+      .attribution {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="container">
+      <div class="result">
+        <div class="result__title">Your Result</div>
+        <div class="circle">
+          <div class="circle__value">76</div>
+          <div class="circle__max">of 100</div>
+        </div>
+        <div class="description">
+          <div class="description__title">Great</div>
+          <div class="description__text">You scored higher than 65% of the people who have taken these tests.</div>
+        </div>
+      </div>
+      <div class="summary">
+        <div class="summary__title">Summary</div>
+        <!-- Reaction -->
+        <div class="category category--red">
+          <div class="category__icon">
+            <img src="./assets/images/icon-reaction.svg" alt="Reaction">
+          </div>
+          <div class="category__name category__name--red">Reaction</div>
+          <div class="category__score score">
+            <span class="score__result">80</span>
+            <span class="score__max">/ 100</span>
+          </div>
+        </div>
+        <!-- Memory -->
+        <div class="category category--yellow">
+          <div class="category__icon">
+            <img src="./assets/images/icon-memory.svg" alt="Memory">
+          </div>
+          <div class="category__name category__name--yellow">Memory</div>
+          <div class="category__score score">
+            <span class="score__result">92</span>
+            <span class="score__max">/ 100</span>
+          </div>
+        </div>
+        <!-- Verbal -->
+        <div class="category category--green">
+          <div class="category__icon">
+            <img src="./assets/images/icon-verbal.svg" alt="Verbal">
+          </div>
+          <div class="category__name category__name--green">Verbal</div>
+          <div class="category__score score">
+            <span class="score__result">61</span>
+            <span class="score__max">/ 100</span>
+          </div>
+        </div>
+        <!-- Visual -->
+        <div class="category category--blue">
+          <div class="category__icon">
+            <img src="./assets/images/icon-visual.svg" alt="Visual">
+          </div>
+          <div class="category__name category__name--blue">Visual</div>
+          <div class="category__score score">
+            <span class="score__result">72</span>
+            <span class="score__max">/ 100</span>
+          </div>
+        </div>
+
+        <button class="summary__button" type="button">Continue</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Alexander Kuchuk</a>.
+  </div>
+</body>
+</html>
